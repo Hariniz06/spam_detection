@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spam Phone Number Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 450px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #ffffff;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 20px;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #222;
+      outline: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    input[type="text"]:focus {
+      outline: 2px solid #007bff;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .check-btn {
+      background: linear-gradient(to right, #2193b0, #6dd5ed);
+      color: #fff;
+    }
+
+    .check-btn:hover {
+      opacity: 0.95;
+      transform: scale(1.03);
+    }
+
+    .report-btn {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      margin-top: 15px;
+    }
+
+    .report-btn:hover {
+      opacity: 0.95;
+      transform: scale(1.03);
+    }
+
+    .result {
+      background-color: rgba(0, 123, 255, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 25px;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .emoji {
+      font-size: 24px;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📱 Spam Phone Number Checker</h1>
+
+    <form method="POST">
+      <input type="text" name="phone" placeholder="Enter phone number" required />
+      <button type="submit" class="check-btn">Check Number</button>
+    </form>
+
+    {% if result %}
+      <div class="result">
+        {{ result }}
+      </div>
+
+      {% if show_report %}
+        <form method="POST">
+          <input type="hidden" name="report_number" value="{{ phone }}" />
+          <button type="submit" class="report-btn">🚨 Report as Spam</button>
+        </form>
+      {% endif %}
+    {% endif %}
+  </div>
+</body>
+</html>
